@@ -1,0 +1,21 @@
+{
+  "name": "mutants",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "author": "Matthias Stahl",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  },
+  "dependencies": {
+    "canvas": "^2.6.1",
+    "csv-parser": "^3.0.0",
+    "d3": "^6.5.0"
+  }
+}
