@@ -50,7 +50,7 @@ const loadShape = async (shapePath) => {
 
 const exportToImage = (canvas, outputPath, name, format) => {
   return new Promise((resolve) => {
-    const o = path.join(root, outputPath, `${name}.${format}`);
+    const o = path.join(root, outputPath, `${name.replace(/[\s\\\/]/g, '_')}.${format}`);
     const out = createWriteStream(o);
 
     let stream;

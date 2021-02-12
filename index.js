@@ -17,6 +17,9 @@ const { variantColors } = require('./colors');
   for (variant of variants) {
     // loop through variants
     // one plot per variant
+    console.log('\n===',
+                `\nProcess variant ${variant}`,
+                '\n===\n');
 
     // get canvas
     const [ canvas, ctx ] = initCanvas(config.width, config.height, config.backgroundColor);

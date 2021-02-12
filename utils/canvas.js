@@ -48,7 +48,7 @@ const drawSegment = (
       .projection(scaledProjection)
       .context(ctx);
 
-    ctx.setTransform(1, 0, 0, 1, interpolatedX + interpolatedWidth / 2, interpolatedY - interpolatedHeight);
+    ctx.setTransform(1, 0, 0, 1, interpolatedX, interpolatedY - interpolatedHeight);
 
     ctx.beginPath();
     gPath(shape);

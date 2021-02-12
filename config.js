@@ -5,7 +5,7 @@ module.exports = {
   height: 1440,
   backgroundColor: '#FFFFFF',
   fillColor: '#EEEEEE',
-  lineWidth: 1,
+  lineWidth: 0.3,
   alpha: 1.0,
   iterations: 10,
   outputPath: 'output',
