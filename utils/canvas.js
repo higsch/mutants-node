@@ -29,7 +29,11 @@ const drawSegment = (
     projection,
     { x, y, r },
     { x: nextX = x, y: nextY = y, r:nextR = r } = {},
-    iterations
+    iterations,
+    color1,
+    color2,
+    lastFillColor,
+    flowProgress
   ) => {
   const width = 2 * r;
   const height = 2 * r;
@@ -37,11 +41,20 @@ const drawSegment = (
   const nextHeight = 2 * nextR;
 
   for (let i = 0; i < iterations; i++) {
-    const progress = i / iterations;
+    const progress = i / (iterations - 1);
     const interpolatedWidth = width + progress * (nextWidth - width);
     const interpolatedHeight = height + progress * (nextHeight - height);
     const interpolatedX = x + progress * (nextX - x);
     const interpolatedY = y + progress * (nextY - y);
+
+    let gradient = ctx.createLinearGradient(0, 0, (1 + progress) * interpolatedWidth, flowProgress * interpolatedHeight);
+    gradient.addColorStop(0, color1);
+    gradient.addColorStop(1, color2);
+    ctx.strokeStyle = gradient;
+
+    if (flowProgress === 1 && progress === 1) {
+      ctx.fillStyle = lastFillColor;
+    }
 
     const scaledProjection = projection.fitSize([interpolatedWidth, interpolatedHeight], shape);
     const gPath = geoPath()
@@ -68,21 +81,24 @@ const plotFlow = (
     color1,
     color2,
     fillColor,
+    lastFillColor,
     lineWidth,
     alpha,
     iterations
   ) => {
+  ctx.save();
+
   // some global canvas settings
   ctx.globalAlpha = alpha;
   ctx.lineWidth = lineWidth;
   ctx.fillStyle = fillColor;
-  ctx.strokeStyle = color1;
 
   // get the projection
   const projection = geoMercator();
 
   // run through the data
   data.forEach((dataPoint, i, arr) => {
+    const flowProgress = i / (arr.length - 1);
     const nextDataPoint = arr[i + 1];
     
     // get the coordinates
@@ -95,11 +111,50 @@ const plotFlow = (
                 projection,
                 dataPointCoords,
                 nextDataPointCoords,
-                iterations);
+                iterations,
+                color1,
+                color2,
+                lastFillColor,
+                flowProgress);
   });
+
+  ctx.restore();
+};
+
+const plotMarks = (
+    ctx,
+    xScale,
+    yScale,
+    dateLabels,
+    r = 5,
+    color = '#000000'
+  ) => {
+  ctx.save();
+  ctx.fillStyle = color;
+
+  const offset = 10;
+
+  // x labels
+  const yStart = yScale.range()[0] + r + offset;
+  dateLabels.forEach(label => {
+    ctx.beginPath();
+    ctx.arc(xScale(label), yStart, r, 0, 2 * Math.PI, false);
+    ctx.fill();
+  });
+
+  // y labels
+  const xStart = xScale.range()[0] - r - offset;
+  yScale.domain().forEach(label => {
+    ctx.beginPath();
+    ctx.arc(xStart, yScale(label), r, 0, 2 * Math.PI, false);
+    ctx.fill();
+  });
+
+  ctx.restore();
 };
 
 module.exports = {
   initCanvas,
   plotFlow,
+  plotMarks,
 };

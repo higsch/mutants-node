@@ -1,5 +1,5 @@
 const config = require('./config');
-const { initCanvas, plotFlow } = require('./utils/canvas');
+const { initCanvas, plotFlow, plotMarks } = require('./utils/canvas');
 const { loadMutantData, loadShape, exportToImage } = require('./utils/io');
 const { defineScales } = require('./utils/scales');
 const { variantColors } = require('./colors');
@@ -13,7 +13,7 @@ const { variantColors } = require('./colors');
   const { xScale, yScale, rScale } = defineScales(data, config.width, config.height);
   
   // plot
-  const variants = [...new Set(data.map(d => d.variant))];
+  const variants = [...new Set(data.map(d => d.variant))];//.filter(d => d === 'B.40');//.filter(d => /^voc/i.test(d))//.filter(d => d === 'B')//.filter(d => /^voc/i.test(d));
   for (variant of variants) {
     // loop through variants
     // one plot per variant
@@ -27,6 +27,10 @@ const { variantColors } = require('./colors');
     // get the colors
     const { color1, color2 } = variantColors.find(d => d.variant === variant);
 
+    if (variant === 'B') {
+      plotMarks(ctx, xScale, yScale, config.dateLabels);
+    }
+
     plotFlow(ctx,
              data.filter(d => d.variant === variant),
              shape,
@@ -36,9 +40,11 @@ const { variantColors } = require('./colors');
              color1,
              color2,
              config.fillColor,
+             config.lastFillColor,
              config.lineWidth,
              config.alpha,
              config.iterations);
+
 
     // export image
     await exportToImage(canvas,
