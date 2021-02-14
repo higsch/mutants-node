@@ -5,8 +5,8 @@ const initCanvas = (width, height, backgroundColor = '#FFFFFF') => {
   const canvas = createCanvas(width, height);
   const ctx = canvas.getContext('2d');
 
-  ctx.fillStyle = backgroundColor;
-  ctx.fillRect(0, 0, width, height);
+  // ctx.fillStyle = backgroundColor;
+  // ctx.fillRect(0, 0, width, height);
 
   return [canvas, ctx];
 };
@@ -41,19 +41,20 @@ const drawSegment = (
   const nextHeight = 2 * nextR;
 
   for (let i = 0; i < iterations; i++) {
-    const progress = i / (iterations - 1);
+    const progress = i / iterations;
     const interpolatedWidth = width + progress * (nextWidth - width);
     const interpolatedHeight = height + progress * (nextHeight - height);
     const interpolatedX = x + progress * (nextX - x);
     const interpolatedY = y + progress * (nextY - y);
 
-    let gradient = ctx.createLinearGradient(0, 0, (1 + progress) * interpolatedWidth, flowProgress * interpolatedHeight);
+    let gradient = ctx.createLinearGradient(0, 0, (1 + flowProgress) * interpolatedWidth, flowProgress * interpolatedHeight);
     gradient.addColorStop(0, color1);
     gradient.addColorStop(1, color2);
     ctx.strokeStyle = gradient;
 
-    if (flowProgress === 1 && progress === 1) {
-      ctx.fillStyle = lastFillColor;
+    if (flowProgress === 1 && i === iterations - 1) {
+      ctx.fillStyle = gradient;
+      ctx.globalAlpha = 0.5;
     }
 
     const scaledProjection = projection.fitSize([interpolatedWidth, interpolatedHeight], shape);
@@ -61,13 +62,20 @@ const drawSegment = (
       .projection(scaledProjection)
       .context(ctx);
 
-    ctx.setTransform(1, 0, 0, 1, interpolatedX, interpolatedY - interpolatedHeight);
+    ctx.setTransform(1, 0, 0, 1, interpolatedX - interpolatedWidth / 2, interpolatedY - interpolatedHeight / 2);
 
     ctx.beginPath();
     gPath(shape);
-    // ctx.arc(0, 0, interpolatedWidth / 2, 0, 2 * Math.PI, false);
     ctx.fill();
     ctx.stroke();
+
+    // ctx.save();
+    // ctx.setTransform(1, 0, 0, 1, 0, 0);
+    // ctx.beginPath();
+    // ctx.arc(interpolatedX, interpolatedY, 20, 0, 2 * Math.PI, false);
+    // ctx.fillStyle = 'yellow';
+    // ctx.fill();
+    // ctx.restore();
   }
 };
 

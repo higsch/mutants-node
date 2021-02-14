@@ -13,7 +13,7 @@ const { variantColors } = require('./colors');
   const { xScale, yScale, rScale } = defineScales(data, config.width, config.height);
   
   // plot
-  const variants = [...new Set(data.map(d => d.variant))];//.filter(d => d === 'B.40');//.filter(d => /^voc/i.test(d))//.filter(d => d === 'B')//.filter(d => /^voc/i.test(d));
+  const variants = [...new Set(data.map(d => d.variant))];//.filter(d => /^voc/i.test(d));//.filter(d => d === 'B')//.filter(d => d === 'B')//.filter(d => /^voc/i.test(d));
   for (variant of variants) {
     // loop through variants
     // one plot per variant

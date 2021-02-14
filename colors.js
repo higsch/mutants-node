@@ -16,8 +16,8 @@ const variantColors = [
   },
   {
     variant: 'B.1.1.257',
-    color1: '#E873D6',
-    color2: '#00937A'
+    color1: '#FF928E',
+    color2: '#ABB17B'
   },
   {
     variant: 'B.1.1.315',
@@ -41,8 +41,8 @@ const variantColors = [
   },
   {
     variant: 'VOC 202012/01',
-    color1: '#FF928E',
-    color2: '#ABB17B'
+    color1: '#E873D6',
+    color2: '#00937A'
   },
   {
     variant: 'minority variants',

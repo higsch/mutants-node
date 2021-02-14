@@ -1,13 +1,13 @@
 module.exports = {
   mutantDataPath: 'data/mutant_data.csv',
   shapePath: 'data/london.json',
-  width: 2560,
-  height: 1440,
+  width: 2560*2,
+  height: 1440*2,
   backgroundColor: '#FFFFFF',
-  fillColor: '#B0B0B0',
+  fillColor: '#FFFFFF',
   lastFillColor: '#333333',
-  lineWidth: 0.3,
-  alpha: 0.8,
+  lineWidth: 0.6,
+  alpha: 1.0,
   iterations: 13,
   dateLabels: [
     new Date(2020, 2, 1),
@@ -16,5 +16,5 @@ module.exports = {
     new Date(2021, 1, 14)
   ],
   outputPath: 'output',
-  outputFormat: 'jpg'
+  outputFormat: 'png'
 };
