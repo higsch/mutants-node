@@ -13,7 +13,9 @@ const { variantColors } = require('./colors');
   const { xScale, yScale, rScale } = defineScales(data, config.width, config.height);
   
   // plot
-  const variants = [...new Set(data.map(d => d.variant))];//.filter(d => /^voc/i.test(d));//.filter(d => d === 'B')//.filter(d => d === 'B')//.filter(d => /^voc/i.test(d));
+  const variants = [...new Set(data.map(d => d.variant))]
+    .filter(d => !config.excludeVariants.includes(d));
+
   for (variant of variants) {
     // loop through variants
     // one plot per variant
@@ -28,7 +30,7 @@ const { variantColors } = require('./colors');
     const { color1, color2 } = variantColors.find(d => d.variant === variant);
 
     if (variant === 'B') {
-      plotMarks(ctx, xScale, yScale, config.dateLabels);
+      // plotMarks(ctx, xScale, yScale, config.dateLabels);
     }
 
     plotFlow(ctx,

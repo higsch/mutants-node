@@ -1,53 +1,53 @@
 const variantColors = [
   {
     variant: 'B',
-    color1: '#0087B2',
-    color2: '#5B108A'
-  },
-  {
-    variant: 'B.1.1',
-    color1: '#6E84D0',
-    color2: '#005793'
-  },
-  {
-    variant: 'B.1.1.1',
-    color1: '#B57ADE',
-    color2: '#007B8A'
-  },
-  {
-    variant: 'B.1.1.257',
-    color1: '#FF928E',
-    color2: '#ABB17B'
-  },
-  {
-    variant: 'B.1.1.315',
-    color1: '#FF7BBA',
-    color2: '#6AA46F'
-  },
-  {
-    variant: 'B.1.177',
-    color1: '#C8EF25',
-    color2: '#f0b6d1'
-  },
-  {
-    variant: 'B.1.98',
-    color1: '#FFB04F',
-    color2: '#D8BDA0'
+    color1: '#8DCDBE',
+    color2: '#D3B4DC'
   },
   {
     variant: 'B.40',
-    color1: '#F2D000',
-    color2: '#F1CCCA'
+    color1: '#64BEBF',
+    color2: '#D49CCD'
   },
   {
-    variant: 'VOC 202012/01',
-    color1: '#E873D6',
-    color2: '#00937A'
+    variant: 'B.1.1',
+    color1: '#46A4B9',
+    color2: '#CA7EAD'
   },
+  // {
+  //   variant: 'B.1.1.1',
+  //   color1: '#46A4B9',
+  //   color2: '#46A4B9'
+  // },
+  // {
+  //   variant: 'B.1.1.257',
+  //   color1: '#46A4B9',
+  //   color2: '#46A4B9'
+  // },
+  // {
+  //   variant: 'B.1.1.315',
+  //   color1: '#FF7BBA',
+  //   color2: '#6AA46F'
+  // },
   {
     variant: 'minority variants',
-    color1: '#333333',
-    color2: '#F1F1F1'
+    color1: '#4183AE',
+    color2: '#B66084'
+  },
+  {
+    variant: 'B.1.177',
+    color1: '#4D5D9C',
+    color2: '#9B4254'
+  },
+  // {
+  //   variant: 'B.1.98',
+  //   color1: '#FFB04F',
+  //   color2: '#D8BDA0'
+  // },
+  {
+    variant: 'VOC 202012/01',
+    color1: '#6B0070',
+    color2: '#510F00'
   }
 ];
 
