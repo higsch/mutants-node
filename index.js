@@ -15,6 +15,7 @@ const { variantColors } = require('./colors');
   // plot
   const variants = [...new Set(data.map(d => d.variant))]
     .filter(d => !config.excludeVariants.includes(d));
+    // .filter(d => /^voc/ig.test(d));
 
   for (variant of variants) {
     // loop through variants
