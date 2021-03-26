@@ -12,7 +12,7 @@ module.exports = {
   lastFillColor: '#333333',
   lineWidth: 0.6,
   alpha: 1.0,
-  iterations: 1,
+  iterations: 5,
   dateLabels: [
     new Date(2020, 2, 1),
     new Date(2020, 7, 1),

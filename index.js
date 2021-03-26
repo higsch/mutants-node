@@ -29,9 +29,9 @@ const { variantColors } = require('./colors');
     // get the colors
     const { color1, color2 } = variantColors.find(d => d.variant === variant);
 
-    if (variant === 'B') {
-      plotMarks(ctx, xScale, yScale, config.dateLabels);
-    }
+    // if (variant === 'B') {
+    //   plotMarks(ctx, xScale, yScale, config.dateLabels);
+    // }
 
     plotFlow(ctx,
              data.filter(d => d.variant === variant),
